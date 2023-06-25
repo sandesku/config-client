@@ -10,19 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class ConfigClient {
+public class UserServiceApplication {
     
     @Value("${user.role}")
     private String role;
 
     public static void main(String[] args) {
-        SpringApplication.run(ConfigClient.class, args);
+        SpringApplication.run(UserServiceApplication.class, args);
     }
 
-    @GetMapping(
-      value = "/whoami/{username}",  
-      produces = MediaType.TEXT_PLAIN_VALUE)
-    public String whoami(@PathVariable("username") String username) {
-        return String.format("Hello! You're %s and you'll become a(n) %s...\n", username, role);
-    }
+	@GetMapping(value = "/whoami/{username}", produces = MediaType.TEXT_PLAIN_VALUE)
+	public String whoami(@PathVariable("username") String username) {
+		return String.format("Hello! You're %s and you'll become a(n) %s...\n", username, role);
+	}
 }
